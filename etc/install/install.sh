@@ -12,7 +12,7 @@ VIRTUALENV_NAME=$PROJECT_NAME
 PROJECT_DIR=/home/vagrant/$PROJECT_NAME
 VIRTUALENV_DIR=/home/vagrant/.virtualenvs/$PROJECT_NAME
 
-PGSQL_VERSION=9.1
+PGSQL_VERSION=9.3.4
 
 # Need to fix locale so that Postgres creates databases in UTF-8
 cp -p $PROJECT_DIR/etc/install/etc-bash.bashrc /etc/bash.bashrc
@@ -57,12 +57,12 @@ su - vagrant -c "mkdir -p /home/vagrant/.pip_download_cache"
 
 # Node.js, CoffeeScript and LESS
 if ! command -v npm; then
-    wget http://nodejs.org/dist/v0.10.0/node-v0.10.0.tar.gz
-    tar xzf node-v0.10.0.tar.gz
-    cd node-v0.10.0/
+    wget http://nodejs.org/dist/v0.10.28/node-v0.10.28.tar.gz
+    tar xzf node-v0.10.28.tar.gz
+    cd node-v0.10.28/
     ./configure && make && make install
     cd ..
-    rm -rf node-v0.10.0/ node-v0.10.0.tar.gz
+    rm -rf node-v0.10.28/ node-v0.10.28.tar.gz
 fi
 if ! command -v coffee; then
     npm install -g coffee-script
