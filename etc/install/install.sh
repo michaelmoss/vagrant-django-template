@@ -9,8 +9,8 @@ PROJECT_NAME=$1
 DB_NAME=$PROJECT_NAME
 VIRTUALENV_NAME=$PROJECT_NAME
 
-PROJECT_DIR=/Users/mmoss/code/$PROJECT_NAME
-VIRTUALENV_DIR=/Users/mmoss/code/.virtualenvs/$PROJECT_NAME
+PROJECT_DIR=/home/vagrant/$PROJECT_NAME
+VIRTUALENV_DIR=/home/vagrant/.virtualenvs/$PROJECT_NAME
 
 PGSQL_VERSION=9.3.4
 
@@ -52,8 +52,8 @@ if [[ ! -f /usr/local/bin/virtualenv ]]; then
 fi
 
 # bash environment global setup
-cp -p $PROJECT_DIR/etc/install/bashrc /Users/mmoss/code/.bashrc
-su - vagrant -c "mkdir -p /Users/mmoss/code/.pip_download_cache"
+cp -p $PROJECT_DIR/etc/install/bashrc /home/vagrant/.bashrc
+su - vagrant -c "mkdir -p /home/vagrant/.pip_download_cache"
 
 # Node.js, CoffeeScript and LESS
 if ! command -v npm; then
@@ -79,9 +79,9 @@ createdb -Upostgres $DB_NAME
 # virtualenv setup for project
 su - vagrant -c "/usr/local/bin/virtualenv $VIRTUALENV_DIR && \
     echo $PROJECT_DIR > $VIRTUALENV_DIR/.project && \
-    PIP_DOWNLOAD_CACHE=/Users/mmoss/code/.pip_download_cache $VIRTUALENV_DIR/bin/pip install -r $PROJECT_DIR/requirements.txt"
+    PIP_DOWNLOAD_CACHE=/home/vagrant/.pip_download_cache $VIRTUALENV_DIR/bin/pip install -r $PROJECT_DIR/requirements.txt"
 
-echo "workon $VIRTUALENV_NAME" >> /Users/mmoss/code/.bashrc
+echo "workon $VIRTUALENV_NAME" >> /home/vagrant/.bashrc
 
 # Set execute permissions on manage.py, as they get lost if we build from a zip file
 chmod a+x $PROJECT_DIR/manage.py
